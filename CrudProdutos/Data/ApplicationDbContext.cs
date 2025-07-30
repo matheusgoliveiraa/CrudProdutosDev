@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CrudProdutos.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CrudProdutos.Data
 {
@@ -7,5 +8,8 @@ namespace CrudProdutos.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
+
+
+        public DbSet<ProdutosModel> Produtos { get; set; }
     }
 }

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ProdutosModel> // Pegando os dados da tabela " Produtos "
+
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Preço</th>
+            <th scope="col">Categoria</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if(Model != null) // Verifica se é nulo, caso não ele cria uma linha com 4 colunas.
+        {
+            @foreach(var produtos in Model)
+            {
+                <tr>
+                    <th scope="row">@produtos.Nome</th>
+                    <td>@produtos.Descricao</td>
+                    <td>@produtos.Preco</td>
+                    <td>@produtos.Categoria</td>
+                </tr>
+            }     
+        }
+    </tbody> 
+</table>
