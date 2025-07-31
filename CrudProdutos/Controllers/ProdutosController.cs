@@ -26,9 +26,39 @@ namespace CrudProdutos.Controllers
         }
 
         [HttpGet]
-        public IActionResult Editar()
+        public IActionResult Editar(int? id)
         {
-            return View();
+            if (id == null || id == 0)
+            { 
+               return NotFound(); 
+            }
+
+            ProdutosModel produtos = _db.Produtos.FirstOrDefault(x => x.Id == id);
+
+            if (produtos == null) 
+            {
+                return NotFound();
+            }
+
+            return View(produtos);
+        }
+
+        [HttpGet]
+        public IActionResult Excluir(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            ProdutosModel produtos = _db.Produtos.FirstOrDefault(x => x.Id == id); // x é como se representasse as tabelas e as colunas
+
+            if(produtos == null)
+            {
+                return NotFound();
+            }
+
+            return View(produtos);
         }
 
         [HttpPost]
@@ -44,6 +74,34 @@ namespace CrudProdutos.Controllers
             }
 
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Editar(ProdutosModel produtos)
+        {
+            if(ModelState.IsValid)
+            {
+                _db.Produtos.Update(produtos);
+                _db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+            return View(produtos);
+        }
+
+        [HttpPost]
+        public IActionResult Excluir(ProdutosModel produtos)
+        {
+            if(produtos == null)
+            {
+                return NotFound();
+            }
+
+            _db.Produtos.Remove(produtos);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }
