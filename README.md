@@ -61,7 +61,7 @@ cd CrudProdutosDev
 
 ```bash
 "ConnectionStrings": {
-  "DefaultConnection": "erver=DESKTOP-36PHNT6\\SQLEXPRESS; Database=Produtos; trusted_connection = true; encrypt=false"
+  "DefaultConnection": "Server=DESKTOP-36PHNT6\\SQLEXPRESS; Database=Produtos; trusted_connection = true; encrypt=false"
 }
 ```
 #### 3. Pacotes NuGet
